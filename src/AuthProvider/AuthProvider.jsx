@@ -38,7 +38,13 @@ useEffect(()=>{
     }
 },[])
 
-
+// logout 
+const logout =()=>{
+    signOut(auth)
+    .then(()=>{
+        alert('sign out successfully')
+    })
+}
 
 
     const authInfo={
