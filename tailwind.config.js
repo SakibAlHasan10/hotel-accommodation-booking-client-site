@@ -10,6 +10,9 @@ export default {
         'home-bg': "url('https://ik.imagekit.io/w13m3d3rhif/web/homepage/homepage-background.jpg?tr=f-auto,pr-true')",
         'footer-texture': "url('/img/footer-texture.png')",
       },
+      colors:{
+        primaryColor:"#0a5299"
+      },
       daisyui: {
         themes: ["light", "dark"],
       },
