@@ -27,6 +27,18 @@ const signInWIthEmail =(email, password)=>{
     return signInWithEmailAndPassword(auth, email, password)
 }
 
+// user state change 
+useEffect(()=>{
+    const unSubscribe = onAuthStateChanged(auth, currentUser=>{
+        setUser(currentUser)
+        setIsLoading(false)
+    })
+    return ()=>{
+        unSubscribe()
+    }
+},[])
+
+
 
 
     const authInfo={
