@@ -11,8 +11,10 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import useAuth from "../../hooks/CustomApi/useAuth";
 
 const Signup = () => {
+  const { signUpWithEmail } = useAuth();
   function Copyright(props) {
     return (
       <Typography
@@ -40,15 +42,22 @@ const Signup = () => {
     const data = new FormData(event.currentTarget);
     const firstName = data.get("firstName");
     const lastName = data.get("lastName");
+    const email = data.get("email");
+    const password = data.get("password");
     console.log({
-      name: firstName +' '+ lastName,
-      email: data.get("email"),
-      password: data.get("password"),
+      name: firstName + " " + lastName,
+      email,
+      password,
     });
+    signUpWithEmail(email, password)
+    .then(res=>{
+        console.log(res.user)
+    }).catch(error=>{
+        console.log(error)
+    })
   };
 
   return (
-
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
