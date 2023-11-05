@@ -7,20 +7,21 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
+// import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+// import AdbIcon from "@mui/icons-material/Adb";
 import { NavLink } from "react-router-dom";
+import useAuth from "../../hooks/CustomApi/useAuth";
 
-const pages = ["Products", "AboutUs", "Pricing", "Blog", "login"];
+const pages = ["Rooms", "My Bookings"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Navbar() {
+  const { user, logout } = useAuth();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -29,20 +30,13 @@ function Navbar() {
   };
 
   const handleCloseNavMenu = (e) => {
-    // <li>
-    //   <NavLink
-    //     to={`/${e}`}
-    //     className={({ isActive, isPending }) =>
-    //       isActive ? "active" : isPending ? "pending" : ""
-    //     }
-    //   >
-    //     {/* other code */}
-    //   </NavLink>
-    // </li>;
     setAnchorElNav(e);
   };
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = (e) => {
+    if (e === "Logout") {
+      logout();
+    }
     setAnchorElUser(null);
   };
   return (
@@ -52,7 +46,6 @@ function Navbar() {
     >
       <Container maxWidth="lg">
         <Toolbar disableGutters>
-          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Typography
             variant="h4"
             noWrap
@@ -101,29 +94,43 @@ function Navbar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={() => handleCloseNavMenu(page)}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography color="#0a5299" textAlign="center">
+                    <li>
+                      <NavLink
+                        to={`/${page}`}
+                        className={({ isActive, isPending }) =>
+                          isActive
+                            ? "active text-orange-500"
+                            : isPending
+                            ? "pending"
+                            : ""
+                        }
+                      >
+                        {page}
+                      </NavLink>
+                    </li>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} /> */}
           <Typography
             variant="h4"
             noWrap
             component="a"
             href="#app-bar-with-responsive-menu"
-            // color={'#0a5299'}
+            color={"#0a5299"}
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
               fontFamily: "monospace",
               fontWeight: 700,
-              color: "inherit",
               textDecoration: "none",
             }}
           >
-            TravelZoo
+            Booking
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
@@ -136,7 +143,11 @@ function Navbar() {
                   <NavLink
                     to={`/${page}`}
                     className={({ isActive, isPending }) =>
-                      isActive ? "active" : isPending ? "pending" : ""
+                      isActive
+                        ? "active text-orange-500"
+                        : isPending
+                        ? "pending"
+                        : ""
                     }
                   >
                     {page}
@@ -145,36 +156,50 @@ function Navbar() {
               </Button>
             ))}
           </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
+          {user?.email ? (
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{}}>
+                  {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
+                  <p className="px-4 text-base">{user?.email}</p>
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((setting) => (
+                  <MenuItem
+                    key={setting}
+                    onClick={() => handleCloseUserMenu(setting)}
+                  >
+                    <Typography sx={{ color: "#0a5299" }} textAlign="center">
+                      {setting}
+                    </Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+          ) : (
+            <NavLink
+              to={"/login"}
+              className="text-white bg-[#0a5299] px-3 rounded-md py-1 hover:shadow-md"
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+              <button>Login</button>
+            </NavLink>
+          )}
         </Toolbar>
       </Container>
     </AppBar>
