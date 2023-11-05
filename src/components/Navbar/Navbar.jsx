@@ -15,7 +15,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { NavLink } from "react-router-dom";
 import useAuth from "../../hooks/CustomApi/useAuth";
 
-const pages = ["Rooms", "My Bookings"];
+const pages = ["Rooms", "My Bookings", "About Us", "Contact Us"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Navbar() {
