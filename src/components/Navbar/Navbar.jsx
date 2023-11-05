@@ -36,25 +36,25 @@ function Navbar() {
   };
 
   return (
-    <AppBar  position="static">
-      <Container maxWidth="lg">
+    <AppBar  position="fixed" sx={{ bgcolor: "#ffffff08", boxShadow:"none", color:"#0a5299",}}>
+      <Container maxWidth="lg" >
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Typography
-            variant="h6"
+            variant="h4"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
-              fontWeight: 700,
+              fontWeight: 800,
               color: 'inherit',
               textDecoration: 'none',
             }}
           >
-            TravelZoo
+            Booking
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -88,24 +88,25 @@ function Navbar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography  textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
-            variant="h5"
+            variant="h4"
             noWrap
             component="a"
             href="#app-bar-with-responsive-menu"
+            // color={'#0a5299'}
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
               fontFamily: 'monospace',
               fontWeight: 700,
-              color: 'inherit',
+              // color: 'inherit',
               textDecoration: 'none',
             }}
           >
