@@ -21,6 +21,13 @@ const signUpWithEmail=(email, password)=>{
     return createUserWithEmailAndPassword(auth, email, password)
 }
 
+// sign in with email 
+const signInWIthEmail =(email, password)=>{
+    setIsLoading(true)
+    return signInWithEmailAndPassword(auth, email, password)
+}
+
+
 
     const authInfo={
         theme,
