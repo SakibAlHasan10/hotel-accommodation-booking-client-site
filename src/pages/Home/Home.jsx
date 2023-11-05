@@ -1,11 +1,13 @@
 import Banner from "../../components/Banner/Banner";
-import room from "../../../public/room.json"
+// import useAuth from "../../hooks/CustomApi/useAuth";
+// import room from "../../../public/room.json"
 const Home = () => {
-console.log(room)
+    
+// console.log(room)
     return (
-        <div>
+        <div className="">
             <Banner></Banner>
-
+            
         </div>
     );
 };
