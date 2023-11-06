@@ -24,7 +24,6 @@ const RoomDetails = () => {
     RoomImages,
     SpecialOffers,
     Rating,
-    // Confirm,
     Title,
     Location,
     Reviews,
@@ -68,7 +67,7 @@ const RoomDetails = () => {
             {/* <h3 className="text-2xl font-semibold mt-10">Facilities</h3>
             <p>wifi</p>
             <p>wifi</p> */}
-              <DetailsPupUp/>
+              <DetailsPupUp></DetailsPupUp>
           </div>
         </div>
       </div>
