@@ -1,23 +1,13 @@
 import { FaRegSquareFull } from "react-icons/fa6";
 import { MdGroup } from "react-icons/md";
+import { AiFillStar } from "react-icons/ai";
 import { FaWifi, FaCarAlt, FaMoon } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 const SingleRoom = ({ room }) => {
   // console.log(Object.keys(room).join(',') )
-  const {
-    _id,
-    RoomDescription,
-    PricePerNight,
-    RoomSize,
-    Availability,
-    RoomImages,
-    SpecialOffers,
-    Rating,
-    Confirm,
-    Title,
-    Location,
-    Reviews,
-  } = room;
+  const { _id, PricePerNight, RoomSize, RoomImages, Rating, Title, Reviews } =
+    room;
   return (
     <div>
       <div className="border rounded-t-2xl">
@@ -26,10 +16,12 @@ const SingleRoom = ({ room }) => {
         </Link>
         <div className="p-4">
           <h2 className="text-xl font-semibold">{Title}</h2>
-          <p className="mt-2">
+          <p className="mt-2 flex items-center">
+            <AiFillStar className="text-orange-500 mr-1 text-lg" />
             {Rating > 4.5
               ? Rating + " " + "Exceptional"
               : `${Rating + " " + "Superb"}`}
+            <span className="ml-2">({Reviews} Reviews)</span>
           </p>
           <p className="flex items-center gap-2 text-lg mt-2">
             <FaRegSquareFull />
@@ -64,5 +56,7 @@ const SingleRoom = ({ room }) => {
     </div>
   );
 };
-
+SingleRoom.propTypes = {
+  room: PropTypes.object,
+};
 export default SingleRoom;

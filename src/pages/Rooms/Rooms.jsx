@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useFind from "../../hooks/GetHook/useFind";
 import SingleRoom from "./SingleRoom";
+import Searching from "../../components/Searching/Searching";
 
 const Rooms = () => {
   const axiosFind = useFind();
@@ -12,7 +13,9 @@ const Rooms = () => {
   }, [axiosFind]);
   return (
     <div>
-      <div className="bg-rooms-bg w-full h-[50vh] bg-cover bg-center bg-no-repeat"></div>
+      <div className="bg-rooms-bg w-full h-[70vh] bg-cover bg-center bg-no-repeat">
+        <Searching></Searching>
+      </div>
       <div className="mt-10 max-w-6xl mx-auto ">
 
       <h2 className="text-3xl font-semibold mb-8">Choose your room</h2>
