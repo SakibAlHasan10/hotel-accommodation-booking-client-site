@@ -1,16 +1,17 @@
-import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { AiFillStar } from 'react-icons/ai';
+import { AiFillStar } from "react-icons/ai";
+import useFind from "../../hooks/GetHook/useFind";
 const RoomDetails = () => {
+  const axiosFind = useFind();
   const [room, setRoom] = useState({});
   const { id } = useParams();
   useEffect(() => {
-    axios.get(`http://localhost:5000/rooms/${id}`).then((res) => {
+    axiosFind.get(`/rooms/${id}`).then((res) => {
       setRoom(res.data);
     });
-  }, [id]);
+  }, [id, axiosFind]);
   const {
     // _id,
     RoomDescription,
@@ -25,7 +26,7 @@ const RoomDetails = () => {
     Location,
     Reviews,
   } = room;
-  console.log(Location)
+  console.log(Location);
   return (
     <div className="mt-16 py-10 bg-base-300 ">
       <div className=" flex max-w-6xl mx-auto p-5 bg-base-100 rounded-xl">
@@ -40,13 +41,15 @@ const RoomDetails = () => {
               </div>
             ))}
           </div>
-          <div >
+          <div>
             <h2 className="text-2xl font-semibold">{Title}</h2>
-            <p className="flex items-center border px-2 py-2 mt-2"><AiFillStar className="text-orange-500 "/> {Rating} Star</p>
+            <p className="flex items-center border px-2 py-2 mt-2">
+              <AiFillStar className="text-orange-500 " /> {Rating} Star
+            </p>
             <p>{Reviews} reviews</p>
             <p>{Availability}</p>
             <p className="text-2xl font-semibold text-teal-500">Refundable</p>
-            <p>{SpecialOffers&& "24% off"}</p>
+            <p>{SpecialOffers && "24% off"}</p>
             <p className="text-2xl font-bold">USD {PricePerNight}</p>
             <p>for 1 Night</p>
             <p>2 Adults 1 Children</p>
