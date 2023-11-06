@@ -8,7 +8,6 @@ import Rooms from "../../pages/Rooms/Rooms";
 import AboutUs from "../../pages/AboutUs/AboutUs";
 import ContactUs from "../../pages/ContactUs/ContactUs";
 import ErrorPage from "../../pages/ErrorPage/ErrorPage";
-
 const router = createBrowserRouter([
   {
     path: "/",
