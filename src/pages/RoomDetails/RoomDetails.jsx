@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
 import { MdGroup } from "react-icons/md";
 import { FaRegSquareFull } from "react-icons/fa6";
 import useFind from "../../hooks/GetHook/useFind";
+import DetailsPupUp from "../../components/DetailsPopup/DetailsPupUp";
 const RoomDetails = () => {
   const axiosFind = useFind();
   const [room, setRoom] = useState({});
@@ -67,11 +68,7 @@ const RoomDetails = () => {
             {/* <h3 className="text-2xl font-semibold mt-10">Facilities</h3>
             <p>wifi</p>
             <p>wifi</p> */}
-            <Link className="">
-              <button className="btn mt-8 hover:shadow-lg shadow-primaryColor bg-primaryColor text-white w-full rounded-3xl hover:bg-blue-700">
-                Book Now
-              </button>
-            </Link>
+              <DetailsPupUp/>
           </div>
         </div>
       </div>
