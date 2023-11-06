@@ -15,6 +15,7 @@ import useAuth from "../../hooks/CustomApi/useAuth";
 import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const Signup = () => {
   const { signUpWithEmail } = useAuth();
@@ -49,11 +50,11 @@ const Signup = () => {
     const lastName = data.get("lastName");
     const email = data.get("email");
     const password = data.get("password");
-    const user=({
+    const user = {
       name: firstName + " " + lastName,
       email,
       password,
-    });
+    };
     setErrorText("");
     if (password.length < 6) {
       setErrorText("Your password must be at least 6 characters");
@@ -71,13 +72,14 @@ const Signup = () => {
     }
     signUpWithEmail(email, password)
       .then((res) => {
-        console.log(res.user);
-        axios.post("http://localhost:5000/users", user).then(res=>{
-          
-          if (res.data.insertedId) {
-            toast.success("your sign up successful", )
-          }
-        })
+        if (res.user) {
+          axios.post("http://localhost:5000/users", user).then((res) => {
+            if (res.data.insertedId) {
+              toast.success("your sign up successful");
+            }
+          });
+          console.log(res.user);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -169,15 +171,16 @@ const Signup = () => {
             >
               Sign Up
             </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="/login" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
+        <SocialLogin />
+        <Grid container justifyContent="flex-end">
+          <Grid item>
+            <Link href="/login" variant="body2">
+              Already have an account? Sign in
+            </Link>
+          </Grid>
+        </Grid>
         <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>

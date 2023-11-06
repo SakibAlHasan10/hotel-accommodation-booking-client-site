@@ -12,9 +12,14 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import useAuth from "../../hooks/CustomApi/useAuth";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
+import toast from "react-hot-toast";
+import { useState } from "react";
 
 const Login = () => {
-    const {signInWIthEmail} = useAuth()
+  const { signInWIthEmail } = useAuth();
+  const [errorText, setErrorText] = useState("");
+
   function Copyright(props) {
     return (
       <Typography
@@ -40,18 +45,25 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const email = data.get("email")
-    const password =data.get("password")
+    const email = data.get("email");
+    const password = data.get("password");
     console.log({
       email,
       password,
     });
     signInWIthEmail(email, password)
-    .then(res=>{
-        console.log(res.user)
-    }).catch(error=>{
-        console.log(error)
-    })
+      .then((res) => {
+        if (res.user) {
+          toast.success("your sign in successful");
+        }
+        // console.log(res.user);
+      })
+      .catch((error) => {
+        if (error) {
+          setErrorText("please enter valid email and password");
+        }
+        console.log(error);
+      });
   };
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -101,6 +113,7 @@ const Login = () => {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+            <p className="text-red-500 mt-2">{errorText}</p>
             <Button
               type="submit"
               fullWidth
@@ -115,14 +128,15 @@ const Login = () => {
                   Forgot password?
                 </Link>
               </Grid>
-              <Grid item>
-                <Link href="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
             </Grid>
           </Box>
         </Box>
+        <SocialLogin />
+        <Grid item>
+          <Link href="/signup" variant="body2">
+            {"Don't have an account? Sign Up"}
+          </Link>
+        </Grid>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
