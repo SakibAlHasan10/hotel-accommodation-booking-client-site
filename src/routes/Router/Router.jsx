@@ -8,6 +8,7 @@ import Rooms from "../../pages/Rooms/Rooms";
 import AboutUs from "../../pages/AboutUs/AboutUs";
 import ContactUs from "../../pages/ContactUs/ContactUs";
 import ErrorPage from "../../pages/ErrorPage/ErrorPage";
+import RoomDetails from "../../pages/RoomDetails/RoomDetails";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path:"/Contact Us",
         element:<ContactUs></ContactUs>
+      },
+      {
+        path:'/details/:id',
+        element: <RoomDetails/>,
       },
       {
         path: "login",

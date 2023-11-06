@@ -19,11 +19,11 @@ const Rooms = ({ room }) => {
   } = room;
   return (
     <div>
-        <Link>
+        <Link to={`/details/${_id}`}>
         <img src={RoomImages} alt="" className="w-full"/>
         <h3>{Title}</h3>
         </Link>
-        <Link>
+        <Link to={`/details/${_id}`}>
         <img src={roomImages} alt="" className="w-full"/>
         </Link>
 
