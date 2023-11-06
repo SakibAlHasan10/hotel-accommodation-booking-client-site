@@ -6,10 +6,18 @@ import { MdGroup } from "react-icons/md";
 import { FaRegSquareFull } from "react-icons/fa6";
 import useFind from "../../hooks/GetHook/useFind";
 import DetailsPupUp from "../../components/DetailsPopup/DetailsPupUp";
+import useAuth from "../../hooks/CustomApi/useAuth";
 const RoomDetails = () => {
   const axiosFind = useFind();
   const [room, setRoom] = useState({});
   const { id } = useParams();
+  const {startDate, 
+    // setStartDate,
+    endDate, 
+    // setEndDate
+  }= useAuth()
+  // console.log(startDate, endDate);
+  
   useEffect(() => {
     axiosFind.get(`/rooms/${id}`).then((res) => {
       setRoom(res.data);
@@ -25,10 +33,17 @@ const RoomDetails = () => {
     SpecialOffers,
     Rating,
     Title,
-    Location,
+    // Location,
     Reviews,
   } = room;
-  console.log(Location);
+  const bookingSum ={
+    title:Title,
+    startDate: startDate,
+    endDate: endDate,
+    price:PricePerNight,
+    size:RoomSize,
+  }
+  
   return (
     <div className="mt-16 py-10 bg-base-300 px-8 ">
       <div className=" lg:flex max-w-6xl mx-auto p-5 bg-base-100 rounded-xl">
@@ -67,7 +82,7 @@ const RoomDetails = () => {
             {/* <h3 className="text-2xl font-semibold mt-10">Facilities</h3>
             <p>wifi</p>
             <p>wifi</p> */}
-              <DetailsPupUp></DetailsPupUp>
+              <DetailsPupUp bookingSum={bookingSum}></DetailsPupUp>
           </div>
         </div>
       </div>

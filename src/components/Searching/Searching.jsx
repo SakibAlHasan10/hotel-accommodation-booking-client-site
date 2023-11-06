@@ -1,11 +1,13 @@
 import { FaHotel } from "react-icons/fa";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useState } from "react";
+import useAuth from "../../hooks/CustomApi/useAuth";
+// import { SiGooglecalendar } from 'react-icons/si';
+
 const Searching = () => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  console.log(startDate, endDate);
+  const { startDate, setStartDate, endDate, setEndDate } = useAuth();
+  // console.log(startDate, endDate);
+
   return (
     <div className="flex justify-center  items-center h-full">
       <div className="w-full mt-28 text-center mx-auto">
@@ -22,22 +24,30 @@ const Searching = () => {
           </div>
           {/* date picker */}
           <div className="md:flex gap-4 mt-12 mx-auto w-full px-8">
-            <div className="border-2 h-20 rounded-lg w-full text-center">
-              <p>Check in</p>
-              <DatePicker
-                selected={startDate}
-                // showTimeSelect
-                // dateFormat="Pp"
-                onChange={async (date) => await setStartDate(date)}
-              />
+            <div className="border-2 text-left justify-center flex items-center gap-3 h-20 rounded-lg w-full ">
+              {/* <SiGooglecalendar className="text-3xl"/> */}
+              <div>
+                <p className="">Check in</p>
+                <DatePicker
+                  selected={startDate}
+                  withPortal
+                  // showTimeSelect
+                  // dateFormat="Pp"
+                  onChange={async (date) => await setStartDate(date)}
+                />
+              </div>
             </div>
 
-            <div className="border-2 mt-3 md:mt-0 h-20 rounded-lg w-full text-center">
+            <div className="border-2 text-left flex items-center justify-center mt-3 md:mt-0 h-20 rounded-lg w-full">
+              <div>
+
               <p>Check out</p>
               <DatePicker
+              withPortal
                 selected={endDate}
                 onChange={async (date) => await setEndDate(date)}
               />
+              </div>
             </div>
             <div className="border-2 h-20 mt-3 md:mt-0 rounded-lg w-full text-center">
               <DatePicker

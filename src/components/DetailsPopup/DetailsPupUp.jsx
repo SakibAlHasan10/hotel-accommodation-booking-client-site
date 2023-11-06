@@ -1,4 +1,6 @@
-const DetailsPupUp = () => {
+import PropTypes from 'prop-types'
+const DetailsPupUp = ({bookingSum}) => {
+  console.log(bookingSum)
   return (
     <div>
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
@@ -23,5 +25,7 @@ const DetailsPupUp = () => {
     </div>
   );
 };
-
+DetailsPupUp.propTypes={
+  bookingSum: PropTypes.object
+}
 export default DetailsPupUp;
