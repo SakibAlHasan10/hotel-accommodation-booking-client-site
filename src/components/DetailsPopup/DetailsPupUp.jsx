@@ -1,6 +1,24 @@
-import PropTypes from 'prop-types'
-const DetailsPupUp = ({bookingSum}) => {
-  console.log(bookingSum)
+import PropTypes from "prop-types";
+import useFind from "../../hooks/GetHook/useFind";
+import useAuth from "../../hooks/CustomApi/useAuth";
+const DetailsPupUp = ({ bookingSum }) => {
+  const { user } = useAuth();
+  const axiosFind = useFind();
+  const {
+    title,
+    // startDate,
+    // endDate,
+    description,
+    price,
+    size,
+  } = bookingSum;
+  const bookInfo = { email: user?.email, bookingSum };
+  const handleBooking = () => {
+    // console.log(bookInfo)
+    axiosFind.patch("/bookings", bookInfo).then((res) => {
+      console.log(res.data);
+    });
+  };
   return (
     <div>
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
@@ -18,14 +36,24 @@ const DetailsPupUp = ({bookingSum}) => {
               ✕
             </button>
           </form>
-          <h3 className="font-bold text-lg">Hello!</h3>
-          <p className="py-4">Press ESC key or click on ✕ button to close</p>
+          <h3 className="font-bold text-lg">{title}</h3>
+          {/* <p className="py-4">{startDate}</p> */}
+          {/* <p className="py-4">{endDate}</p> */}
+          <p>{size}</p>
+          <p>USD {price}</p>
+          <p>{description}</p>
+          <button
+            onClick={handleBooking}
+            className="btn mt-8 hover:shadow-lg shadow-primaryColor bg-primaryColor text-white w-full rounded-3xl hover:bg-blue-700"
+          >
+            Confirm
+          </button>
         </div>
       </dialog>
     </div>
   );
 };
-DetailsPupUp.propTypes={
-  bookingSum: PropTypes.object
-}
+DetailsPupUp.propTypes = {
+  bookingSum: PropTypes.object,
+};
 export default DetailsPupUp;

@@ -10,6 +10,7 @@ import ContactUs from "../../pages/ContactUs/ContactUs";
 import ErrorPage from "../../pages/ErrorPage/ErrorPage";
 import RoomDetails from "../../pages/RoomDetails/RoomDetails";
 import PrivateRouter from "../PrivateRouter/PrivateRouter";
+import DetailsPupUp from "../../components/DetailsPopup/DetailsPupUp";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
         path: "/signup",
         element: <Signup></Signup>,
       },
+      {
+        path:"/popup",
+        element:<DetailsPupUp/>
+      }
     ],
   },
 ]);
