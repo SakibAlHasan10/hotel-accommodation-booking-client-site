@@ -12,9 +12,13 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import useAuth from "../../hooks/CustomApi/useAuth";
+import { useState } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const Signup = () => {
   const { signUpWithEmail } = useAuth();
+  const [errorText, setErrorText] = useState("");
   function Copyright(props) {
     return (
       <Typography
@@ -39,22 +43,45 @@ const Signup = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     const data = new FormData(event.currentTarget);
     const firstName = data.get("firstName");
     const lastName = data.get("lastName");
     const email = data.get("email");
     const password = data.get("password");
-    console.log({
+    const user=({
       name: firstName + " " + lastName,
       email,
       password,
     });
+    setErrorText("");
+    if (password.length < 6) {
+      setErrorText("Your password must be at least 6 characters");
+      return;
+    } else if (!/(?=.*?[A-Z])/.test(password)) {
+      setErrorText("Your password must contain at least one capital letter");
+      return;
+    } else {
+      if (!/(?=.*[!#$%&? "])/.test(password)) {
+        setErrorText(
+          "Your password must contain at least one Special characters"
+        );
+        return;
+      }
+    }
     signUpWithEmail(email, password)
-    .then(res=>{
-        console.log(res.user)
-    }).catch(error=>{
-        console.log(error)
-    })
+      .then((res) => {
+        console.log(res.user);
+        axios.post("http://localhost:5000/users", user).then(res=>{
+          
+          if (res.data.insertedId) {
+            toast.success("your sign up successful", )
+          }
+        })
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -133,6 +160,7 @@ const Signup = () => {
                 />
               </Grid>
             </Grid>
+            <p className="text-red-500 mt-2">{errorText}</p>
             <Button
               type="submit"
               fullWidth
