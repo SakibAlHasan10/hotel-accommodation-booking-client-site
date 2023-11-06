@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import Banner from "../../components/Banner/Banner";
 import Rooms from "../../components/Rooms/Rooms";
-import axios from "axios";
+import useFind from "../../hooks/GetHook/useFind";
 const Home = () => {
+  const axiosFind = useFind()
   const [rooms, setRooms] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:5000/rooms").then((res) => {
+    axiosFind.get("/rooms").then((res) => {
       setRooms(res.data);
     });
-  }, []);
+  }, [axiosFind]);
   return (
     <div>
       <Banner></Banner>
