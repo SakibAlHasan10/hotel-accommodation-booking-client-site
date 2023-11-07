@@ -13,7 +13,7 @@ const Bookings = () => {
   const { isPending, error, data } = useQuery({
     queryKey: ['allBookRoom'],
     queryFn: () =>
-    axios.get(`http://localhost:5000/books/${email}`).then((res) => {
+    axiosFind.get(`/books/${email}`).then((res) => {
               setAllBook(res.data);
             })
   })

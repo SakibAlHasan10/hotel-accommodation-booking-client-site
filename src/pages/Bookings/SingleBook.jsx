@@ -2,7 +2,7 @@ import useFind from "../../hooks/GetHook/useFind";
 import PropTypes from "prop-types";
 import Swal from "sweetalert2";
 const SingleBook = ({ book }) => {
-  const axiosFind = useFind();
+  const axiosFind = useFind()
   const {
     // _id,
     // RoomDescription,
@@ -63,7 +63,8 @@ const SingleBook = ({ book }) => {
           </button>
           <button
             onClick={handleDeleteBooking}
-            className="btn bg-primaryColor hover:bg-blue-600 text-white"
+            className={`btn bg-primaryColor hover:bg-blue-600
+             text-white`}
           >
             deleted
           </button>

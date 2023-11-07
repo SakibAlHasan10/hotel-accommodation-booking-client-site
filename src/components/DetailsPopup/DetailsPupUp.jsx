@@ -7,28 +7,29 @@ const DetailsPupUp = ({ bookingSum }) => {
   const axiosFind = useFind();
   const {
     title,
-    startDate,
-    endDate,
+    // startDate,
+    // endDate,
     description,
     price,
     size,
   } = bookingSum;
   const bookInfo = { email: user?.email, bookingSum };
-  console.log(startDate,
-    endDate)
+  // console.log(startDate,endDate)
   const handleBooking = () => {
     axiosFind.patch("/bookings", bookInfo).then((res) => {
       if(res.data.modifiedCount>0){
         toast.success("your booking successful");
       }
-      console.log(res.data);
+      // console.log(res.data);
     });
   };
   return (
     <div>
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
       <button
-        className="btn mt-8 hover:shadow-lg shadow-primaryColor bg-primaryColor text-white w-full rounded-3xl hover:bg-blue-700"
+      disabled={!user}
+        className={`btn mt-8 hover:shadow-lg shadow-primaryColor bg-primaryColor text-white w-full rounded-3xl
+        hover:bg-blue-700`}
         onClick={() => document.getElementById("my_modal_3").showModal()}
       >
         Book Now
