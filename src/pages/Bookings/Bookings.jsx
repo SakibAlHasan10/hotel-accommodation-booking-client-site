@@ -3,7 +3,6 @@ import useAuth from "../../hooks/CustomApi/useAuth";
 import useFind from "../../hooks/GetHook/useFind";
 import SingleBook from "./SingleBook";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 
 const Bookings = () => {
   const { user } = useAuth();
@@ -28,7 +27,7 @@ const Bookings = () => {
         <h2 className="text-3xl font-semibold mb-8">My Bookings</h2>
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 ">
         {
-            allBook?.map(book=><SingleBook
+            allBook&&allBook?.map(book=><SingleBook
             key={book._id}
             book={book}
             ></SingleBook>)
