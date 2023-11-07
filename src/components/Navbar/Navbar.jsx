@@ -14,6 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 // import AdbIcon from "@mui/icons-material/Adb";
 import { NavLink } from "react-router-dom";
 import useAuth from "../../hooks/CustomApi/useAuth";
+import toast from "react-hot-toast";
 
 const pages = ["Rooms", "My Bookings", "About Us", "Contact Us"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -35,7 +36,10 @@ function Navbar() {
 
   const handleCloseUserMenu = (e) => {
     if (e === "Logout") {
-      logout();
+      logout()
+      .then(() => {
+        toast.success("sign out successfully");
+      });
     }
     setAnchorElUser(null);
   };
