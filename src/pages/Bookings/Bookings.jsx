@@ -1,18 +1,41 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useAuth from "../../hooks/CustomApi/useAuth";
 import useFind from "../../hooks/GetHook/useFind";
+import SingleBook from "./SingleBook";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 const Bookings = () => {
   const { user } = useAuth();
   const axiosFind = useFind();
+  const [allBook, setAllBook]=useState([])
   const email = user?.email;
-//   console.log(email);
-  useEffect(() => {
-    axiosFind.get(`/books/${email}`).then((res) => {
-      console.log(res.data);
-    });
-  }, [axiosFind, email]);
-  return <div>bookings</div>;
+  const { isPending, error, data } = useQuery({
+    queryKey: ['repoData'],
+    queryFn: () =>
+    axios.get(`http://localhost:5000/books/${email}`).then((res) => {
+              setAllBook(res.data);
+            })
+  })
+//   console.log(allBook);
+//   useEffect(() => {
+//     axiosFind.get(`/books/${email}`).then((res) => {
+//       setAllBook(res.data);
+//     });
+//   }, [axiosFind, email]);
+  return (
+    <div className=" max-w-screen-lg mx-auto pt-28 h-screen">
+        <h2 className="text-3xl font-semibold mb-8">My Bookings</h2>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 ">
+        {
+            allBook?.map(book=><SingleBook
+            key={book._id}
+            book={book}
+            ></SingleBook>)
+        }
+    </div>
+    </div>
+  );
 };
 
 export default Bookings;
