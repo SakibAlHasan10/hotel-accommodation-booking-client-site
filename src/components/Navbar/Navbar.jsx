@@ -95,20 +95,18 @@ function Navbar() {
               {pages.map((page) => (
                 <MenuItem key={page} onClick={() => handleCloseNavMenu(page)}>
                   <Typography color="#0a5299" textAlign="center">
-                    <li>
-                      <NavLink
-                        to={`/${page}`}
-                        className={({ isActive, isPending }) =>
-                          isActive
-                            ? "active text-orange-500"
-                            : isPending
-                            ? "pending"
-                            : ""
-                        }
-                      >
-                        {page}
-                      </NavLink>
-                    </li>
+                    <NavLink
+                      to={`/${page}`}
+                      className={({ isActive, isPending }) =>
+                        isActive
+                          ? "active text-orange-500"
+                          : isPending
+                          ? "pending"
+                          : ""
+                      }
+                    >
+                      {page}
+                    </NavLink>
                   </Typography>
                 </MenuItem>
               ))}
@@ -134,26 +132,25 @@ function Navbar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Button
+              <NavLink
                 key={page}
-                onClick={() => handleCloseNavMenu(page)}
-                sx={{ my: 2, color: "#0a5299", display: "block" }}
+                to={`/${page}`}
+                className={({ isActive, isPending }) =>
+                  isActive
+                    ? "active text-orange-500"
+                    : isPending
+                    ? "pending"
+                    : ""
+                }
               >
-                <li>
-                  <NavLink
-                    to={`/${page}`}
-                    className={({ isActive, isPending }) =>
-                      isActive
-                        ? "active text-orange-500"
-                        : isPending
-                        ? "pending"
-                        : ""
-                    }
-                  >
-                    {page}
-                  </NavLink>
-                </li>
-              </Button>
+                <Button
+                  key={page}
+                  onClick={() => handleCloseNavMenu(page)}
+                  sx={{ my: 2, color: "#0a5299", display: "block" }}
+                >
+                  {page}
+                </Button>
+              </NavLink>
             ))}
           </Box>
           {user?.email ? (

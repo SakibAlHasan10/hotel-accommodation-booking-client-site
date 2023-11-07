@@ -4,7 +4,7 @@ import { PropTypes } from "prop-types";
 const PrivateRouter = ({children}) => {
     const {user, isLoading}= useAuth()
     if(isLoading){
-        return <h1>loading...</h1>
+        return <span>loading...</span>
     }
     if(user){
         return children

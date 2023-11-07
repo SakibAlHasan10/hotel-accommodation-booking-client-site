@@ -1,21 +1,26 @@
 import PropTypes from "prop-types";
 import useFind from "../../hooks/GetHook/useFind";
 import useAuth from "../../hooks/CustomApi/useAuth";
+import toast from "react-hot-toast";
 const DetailsPupUp = ({ bookingSum }) => {
   const { user } = useAuth();
   const axiosFind = useFind();
   const {
     title,
-    // startDate,
-    // endDate,
+    startDate,
+    endDate,
     description,
     price,
     size,
   } = bookingSum;
   const bookInfo = { email: user?.email, bookingSum };
+  console.log(startDate,
+    endDate)
   const handleBooking = () => {
-    // console.log(bookInfo)
     axiosFind.patch("/bookings", bookInfo).then((res) => {
+      if(res.data.modifiedCount>0){
+        toast.success("your booking successful");
+      }
       console.log(res.data);
     });
   };
