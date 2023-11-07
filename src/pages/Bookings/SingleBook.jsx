@@ -1,8 +1,9 @@
 import useFind from "../../hooks/GetHook/useFind";
 import PropTypes from "prop-types";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 const SingleBook = ({ book }) => {
-  const axiosFind = useFind()
+  const axiosFind = useFind();
   const {
     // _id,
     // RoomDescription,
@@ -18,6 +19,7 @@ const SingleBook = ({ book }) => {
     // Reviews,
     // bookDate,
     // email,
+    id,
     _id,
     title,
     bookDate,
@@ -47,28 +49,50 @@ const SingleBook = ({ book }) => {
       }
     });
   };
+  // const handleReviewId=()=>{
+  //   setReviewId('')
+  //   setReviewId(id)
+  //   console.log(id)
+  //   console.log(reviewId)
+  // }
   //   console.log(Object.keys(book).join(','))
+  // console.log(reviewId)
+
   return (
-    <div className="flex border h-44 p-4 gap-3 rounded-lg">
-      <img src={img} alt="" className="h-36 w-40 rounded-lg" />
-      <div>
-        <h2 className="text-2xl font-semibold">{title}</h2>
-        <p>USD {price}</p>
-        {/* <p>{size}</p> */}
-        <p>{bookDate.startDate}</p>
-        <p>{bookDate.endDate}</p>
-        <div>
-          <button className="btn btn-outline border-2 hover:border-white border-primaryColor hover:bg-primaryColor mr-5">
-            change date
-          </button>
-          <button
-            onClick={handleDeleteBooking}
-            className={`btn bg-primaryColor hover:bg-blue-600
-             text-white`}
-          >
-            deleted
-          </button>
+    <div className=" border  mb-5  p-4 gap-3 rounded-lg">
+      <div className="flex">
+        <img src={img} alt="" className="h-36 w-40 rounded-lg mr-4" />
+        <div className="md:flex">
+          <div>
+            <h2 className="text-2xl font-semibold">{title}</h2>
+            <p>USD {price}</p>
+            {/* <p>{size}</p> */}
+            <p>{bookDate.startDate}</p>
+            <p>{bookDate.endDate}</p>
+          </div>
         </div>
+      </div>
+      <div className="flex w-full md:w-6/12 lg:w-10/12 mx-auto mt-4 gap-2 md:gap-3">
+        <button className="btn btn-outline border-2 hover:border-white border-primaryColor hover:bg-primaryColor">
+          change date
+        </button>
+        <button
+          onClick={handleDeleteBooking}
+          className={`btn bg-primaryColor hover:bg-blue-600
+             text-white`}
+        >
+          Delete
+        </button>
+        <Link to={`review/${id}`}>
+          <button className="btn btn-outline border-2 hover:border-white border-primaryColor hover:bg-primaryColor">
+            add review
+          </button>
+        </Link>
+        {/* <button onClick={handleReviewId}>
+            hhhh
+          </button> */}
+        {/* <Reviews id={id}>
+            </Reviews> */}
       </div>
     </div>
   );

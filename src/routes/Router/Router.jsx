@@ -11,6 +11,7 @@ import ErrorPage from "../../pages/ErrorPage/ErrorPage";
 import RoomDetails from "../../pages/RoomDetails/RoomDetails";
 import PrivateRouter from "../PrivateRouter/PrivateRouter";
 import DetailsPupUp from "../../components/DetailsPopup/DetailsPupUp";
+import Reviews from "../../components/Reviews/Reviews";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,10 +21,17 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+        
       },
       {
         path: "/My Bookings",
         element: <PrivateRouter><Bookings></Bookings></PrivateRouter>,
+        children:[
+          {
+            path:'review/:id',
+            element:<Reviews></Reviews>
+          }
+        ]
       },
       {
         path: "/Rooms",

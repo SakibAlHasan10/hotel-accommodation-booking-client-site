@@ -13,11 +13,12 @@ const DetailsPupUp = ({ bookingSum }) => {
     price,
     size,
   } = bookingSum;
+  // console.log(bookingSum)
   const bookInfo = { email: user?.email, bookingSum };
   // console.log(startDate,endDate)
   const handleBooking = () => {
     axiosFind.patch("/bookings", bookInfo).then((res) => {
-      if(res.data.modifiedCount>0){
+      if (res.data.modifiedCount > 0) {
         toast.success("your booking successful");
       }
       // console.log(res.data);
@@ -27,7 +28,7 @@ const DetailsPupUp = ({ bookingSum }) => {
     <div>
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
       <button
-      disabled={!user}
+        disabled={!user}
         className={`btn mt-8 hover:shadow-lg shadow-primaryColor bg-primaryColor text-white w-full rounded-3xl
         hover:bg-blue-700`}
         onClick={() => document.getElementById("my_modal_3").showModal()}

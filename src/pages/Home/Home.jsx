@@ -5,6 +5,7 @@ import useFind from "../../hooks/GetHook/useFind";
 import Map from "../../components/Map/Map";
 import Testimonials from "../../components/Testimonials/Testimonials";
 import SpecialOffers from "../../components/SpecialOffers/SpecialOffers";
+
 const Home = () => {
   const axiosFind = useFind()
   const [rooms, setRooms] = useState([]);
@@ -17,7 +18,7 @@ const Home = () => {
     <div className="bg-base-300">
       <Banner></Banner>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-screen-lg mx-auto gap-6 px-8 ">
-
+      
       {rooms?.map((room) => (
         <Rooms key={room._id} room={room}></Rooms>
       ))}
