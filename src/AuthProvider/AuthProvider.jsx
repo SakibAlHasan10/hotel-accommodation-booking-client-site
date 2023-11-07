@@ -10,8 +10,10 @@ import {
 } from "firebase/auth";
 import { auth } from "../configs/firebase/firebase.config";
 import axios from "axios";
+import useFind from "../hooks/GetHook/useFind";
 export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
+  const axiosFind = useFind();
   const [theme, setTheme] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
@@ -42,18 +44,26 @@ const AuthProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
       setIsLoading(false);
-      if(currentUser){
-        const loggedUser = {email: currentUser.email}
-        axios.post("http://localhost:5000/jwt", loggedUser, {withCredentials:true} )
-        .then(res=>{
-          console.log(res.data)
-        })
+      const userEmail = currentUser?.email || user?.email;
+      const loggedUser = { email: userEmail };
+      if (currentUser) {
+        axios
+          .post("http://localhost:5000/jwt", loggedUser, {
+            withCredentials: true,
+          })
+          .then(() => {
+            // console.log(res.data)
+          });
+      } else {
+        axiosFind.post("/logout", loggedUser).then(() => {
+          // console.log(res.data)
+        });
       }
     });
     return () => {
       unSubscribe();
     };
-  }, []);
+  }, [axiosFind, user?.email]);
 
   // logout
   const logout = () => {
@@ -71,10 +81,10 @@ const AuthProvider = ({ children }) => {
     signUpWithEmail,
     signInWIthEmail,
     logout,
-    startDate, 
+    startDate,
     setStartDate,
-    endDate, 
-    setEndDate
+    endDate,
+    setEndDate,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
