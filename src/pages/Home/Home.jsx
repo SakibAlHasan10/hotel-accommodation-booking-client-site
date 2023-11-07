@@ -4,6 +4,7 @@ import Rooms from "../../components/Rooms/Rooms";
 import useFind from "../../hooks/GetHook/useFind";
 import Map from "../../components/Map/Map";
 import Testimonials from "../../components/Testimonials/Testimonials";
+import SpecialOffers from "../../components/SpecialOffers/SpecialOffers";
 const Home = () => {
   const axiosFind = useFind()
   const [rooms, setRooms] = useState([]);
@@ -21,6 +22,7 @@ const Home = () => {
         <Rooms key={room._id} room={room}></Rooms>
       ))}
       </div>
+      <SpecialOffers></SpecialOffers>
       <Map></Map>
       <Testimonials></Testimonials>
     </div>
