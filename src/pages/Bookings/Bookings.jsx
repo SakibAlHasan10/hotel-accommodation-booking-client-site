@@ -11,7 +11,7 @@ const Bookings = () => {
   const [allBook, setAllBook]=useState([])
   const email = user?.email;
   const { isPending, error, data } = useQuery({
-    queryKey: ['repoData'],
+    queryKey: ['allBookRoom'],
     queryFn: () =>
     axios.get(`http://localhost:5000/books/${email}`).then((res) => {
               setAllBook(res.data);
