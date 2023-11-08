@@ -10,13 +10,15 @@ const Bookings = () => {
   const axiosFind = useFind();
   const [allBook, setAllBook] = useState([]);
   const email = user?.email;
-  const { isPending, error, data } = useQuery({
+  const { isPending, error, data, isLoading } = useQuery({
     queryKey: ["allBookRoom"],
     queryFn: () =>
       axiosFind.get(`/books/${email}`).then((res) => {
         setAllBook(res.data);
       }),
   });
+
+  isPending
 
   return (
     <div className=" max-w-screen-lg mx-auto pt-28 px-6">
@@ -28,7 +30,6 @@ const Bookings = () => {
             <SingleBook key={book._id} book={book}></SingleBook>
           ))}
       </div>
-      <Outlet></Outlet>
     </div>
   );
 };

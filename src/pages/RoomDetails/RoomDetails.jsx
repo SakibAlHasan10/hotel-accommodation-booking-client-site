@@ -9,11 +9,13 @@ import DetailsPupUp from "../../components/DetailsPopup/DetailsPupUp";
 import useAuth from "../../hooks/CustomApi/useAuth";
 import { FaWifi, FaCarAlt, FaBed } from "react-icons/fa";
 import moment from "moment/moment";
-let array = []
+import Review from "../../components/Review/Review";
+let array = [];
 const RoomDetails = () => {
   const axiosFind = useFind();
   // const [sitAble, setSitSitAble] =useState()
   const [room, setRoom] = useState({});
+  const [review, setReview] = useState([]);
   const { id } = useParams();
   const {
     startDate,
@@ -27,9 +29,16 @@ const RoomDetails = () => {
       setRoom(res.data);
     });
   }, [id, axiosFind]);
+
+  useEffect(() => {
+    axiosFind.get(`/reviews/${id}`).then((res) => {
+      setReview(res.data);
+    });
+  }, [id, axiosFind]);
+
   const {
     _id,
-    booking,
+    // booking,
     description,
     price,
     size,
@@ -43,50 +52,47 @@ const RoomDetails = () => {
     location,
     reviews,
   } = room;
-  // console.log(room);
+  // console.log(booking);
   // console.log(booking, findDate)
-  
+
   // if(!booking){
   //   console.log('kkkkkkkhhhh')
   //     // setArr([...new Array, startDate])
-    
-  //   }
 
+  //   }
 
   // sum offers
   const sum = price - price * (Offers / 100);
-  const bookingPrice = (Offers>0)?sum : price;
+  const bookingPrice = Offers > 0 ? sum : price;
 
   // date formatting
-  const bookingDate = moment(startDate).format('MM/DD/YYYY')
-// const time = moment(booking[0]).isSame(bookingDate, "day")
-// const date1 = moment(booking[0]).format('MM/DD/YYYY')
-// console.log(time, bookingDate[0])
+  const bookingDate = moment(startDate).format("MM/DD/YYYY");
+  // const time = moment(booking[0]).isSame(bookingDate, "day")
+  // const date1 = moment(booking[0]).format('MM/DD/YYYY')
+  // console.log(time, bookingDate[0])
 
-// compare two date
-const findDate = booking?.find(book => moment(book).isSame(bookingDate, "day"))
-//  if(sit===0 && findDate){
-//   setSitSitAble(true)
-//  }else{
-//   setSitSitAble(false)
-//  }
-// console.log(findDate)
+  // compare two date
+  // const findDate = booking?.find(book => moment(book).isSame(bookingDate, "day"))
+  //  if(sit===0 && findDate){
+  //   setSitSitAble(true)
+  //  }else{
+  //   setSitSitAble(false)
+  //  }
+  // console.log(findDate)
 
-
-
-  array = [bookingDate]
+  array = [bookingDate];
   const bookingSum = {
     booking: array,
     id: _id,
     title: title,
-    sit:sit,
+    sit: sit,
     price: bookingPrice,
     size: size,
     description: description,
     img: images,
   };
   // console.log(Facilities)
- 
+
   return (
     <div className="mt-16 py-10 bg-base-300 px-8 ">
       <div className=" lg:flex max-w-6xl mx-auto p-5 bg-base-100 rounded-xl">
@@ -122,8 +128,12 @@ const findDate = booking?.find(book => moment(book).isSame(bookingDate, "day"))
                 <p className="mt-2 bg-orange-500 text-lg w-28 text-center rounded-3xl py-1 text-white">
                   {Offers + "% off"}
                 </p>
-                <p className="text-xl line-through mt-2 font-bold">USD {price}</p>
-                <p className="text-2xl mt-2 font-bold text-primaryColor">USD {sum}</p>
+                <p className="text-xl line-through mt-2 font-bold">
+                  USD {price}
+                </p>
+                <p className="text-2xl mt-2 font-bold text-primaryColor">
+                  USD {sum}
+                </p>
               </div>
             ) : (
               <div>
@@ -134,13 +144,18 @@ const findDate = booking?.find(book => moment(book).isSame(bookingDate, "day"))
               </div>
             )}
             <p className="mt-2">for 1 Night</p>
-            {
-              sit&& sit!==0? 
-            <p className="flex items-center gap-2 mt-2">
-              <FaBed className="text-lg" />
-              {sit + " " + "Bed"} {availability}
-            </p> : <p className="flex text-red-600 items-center gap-2 mt-2"> <FaBed className="text-lg" />Not Available</p>
-            }
+            {sit && sit !== 0 ? (
+              <p className="flex items-center gap-2 mt-2">
+                <FaBed className="text-lg" />
+                {sit + " " + "Bed"} {availability}
+              </p>
+            ) : (
+              <p className="flex text-red-600 items-center gap-2 mt-2">
+                {" "}
+                <FaBed className="text-lg" />
+                Not Available
+              </p>
+            )}
             <p className="flex items-center gap-2 mt-2">
               <FaRegSquareFull className="" />
               {size}
@@ -163,9 +178,24 @@ const findDate = booking?.find(book => moment(book).isSame(bookingDate, "day"))
           </div>
         </div>
       </div>
+      {/* description */}
       <div className="max-w-6xl mx-auto p-5 bg-base-100 rounded-xl mt-8">
         <h2 className="text-2xl mb-3 font-semibold">Room Description</h2>
         <p>{description}</p>
+      </div>
+      {/* review */}
+      <div className="max-w-6xl mx-auto p-5 bg-base-100 rounded-xl mt-8">
+        <h2 className="text-2xl mb-3 font-semibold">Room review</h2>
+        <div className="grid mt-6 grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-4">
+
+        {review.length > 0 ? (
+          review?.slice(0, 4).map((sl) => <Review key={sl._id}>{sl}</Review>)
+        ) : (
+          <p className="text-center text-lg font-normal my-10">
+            Review Not Available
+          </p>
+        )}
+        </div>
       </div>
     </div>
   );

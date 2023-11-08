@@ -9,7 +9,7 @@ const Root = () => {
     setTheme(!theme);
   };
   return (
-    <div>
+    <div className="bg-base-200">
       <h2 data-theme={`${theme ? "light" : "dark"}`}>
       <Navbar></Navbar>
       <Outlet></Outlet>
