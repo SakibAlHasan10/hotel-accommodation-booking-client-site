@@ -3,9 +3,10 @@ import useFind from "../../hooks/GetHook/useFind";
 import useAuth from "../../hooks/CustomApi/useAuth";
 import toast from "react-hot-toast";
 import { FaRegSquareFull } from "react-icons/fa6";
+import moment from "moment";
 
 const DetailsPupUp = ({ bookingSum }) => {
-  const { user } = useAuth();
+  const { user, startDate } = useAuth();
   const axiosFind = useFind();
   const {
     title,
@@ -26,9 +27,11 @@ const DetailsPupUp = ({ bookingSum }) => {
       // console.log(res.data);
     });
   };
-  if (!user) {
+  // if (!user) {
     // navigate('/login')
-  }
+  // }
+  const bookingDate = moment(startDate).format("MM/DD/YYYY");
+
   return (
     <div>
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
@@ -53,7 +56,7 @@ const DetailsPupUp = ({ bookingSum }) => {
           {/* <p className="py-4">{startDate}</p> */}
           {/* <p className="py-4">{endDate}</p> */}
           <p className="text-xl font-semibold mt-3">USD {price}</p>
-          <p className="text-lg font-semibold mt-2">date</p>
+          <p className="text-lg font-semibold mt-2">Date:   {bookingDate}</p>
           <p className="flex items-center gap-2 mt-2">
             <FaRegSquareFull className="" />
             {size}
