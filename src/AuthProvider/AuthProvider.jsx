@@ -12,6 +12,7 @@ import { auth } from "../configs/firebase/firebase.config";
 import axios from "axios";
 export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
+  const [loadRoom, setLoadRoom] = useState([])
   const [theme, setTheme] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
@@ -78,6 +79,8 @@ const AuthProvider = ({ children }) => {
     logout,
     startDate,
     setStartDate,
+    loadRoom, 
+    setLoadRoom
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

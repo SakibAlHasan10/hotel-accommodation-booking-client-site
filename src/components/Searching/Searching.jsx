@@ -2,12 +2,36 @@ import { FaHotel } from "react-icons/fa";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useAuth from "../../hooks/CustomApi/useAuth";
+import { useEffect, useState } from "react";
+import useFind from "../../hooks/GetHook/useFind";
 // import { SiGooglecalendar } from 'react-icons/si';
 
 const Searching = () => {
-  const { startDate, setStartDate } = useAuth();
-  // console.log(startDate, endDate);
+  const { startDate, setStartDate, setLoadRoom } = useAuth();
+  const axiosFind = useFind();
+  const [shortField, setShortField] = useState('')
+  const [shortOrder, setShortOrder] = useState('')
 
+  // console.log(startDate, endDate);
+  // shortField=sit&shortOrder=desc
+  useEffect(() => {
+    axiosFind.get(`/rooms?shortField=${shortField}&shortOrder=${shortOrder}`).then((res) => {
+      setLoadRoom(res.data);
+    });
+  }, [axiosFind, setLoadRoom, shortField, shortOrder]);
+  const handleShortBySit = (data) => {
+    const shortValue = data.target.value;
+    // const shortType = {sit:shortValue}
+    // shortField=sit&shortOrder=desc
+    setShortField("sit")
+    setShortOrder(shortValue)
+  };
+  const handleShortByPrice = (data) => {
+    const shortValue = data.target.value;
+    setShortField("price")
+    setShortOrder(shortValue)
+  };
+  // console.log(shortField, shortOrder)
   return (
     <div className="flex justify-center  items-center h-full">
       <div className="w-full mt-28 text-center mx-auto">
@@ -22,54 +46,47 @@ const Searching = () => {
               </p>
             </div>
           </div>
-          {/* date picker */}
-          <div className="md:flex gap-4 mt-12 mx-auto w-full px-8">
+          <div className="md:flex gap-4 mt-16 mx-auto w-full px-8">
             <div className="border-2 text-left justify-center flex items-center gap-3 h-20 rounded-lg w-full ">
-              {/* <SiGooglecalendar className="text-3xl"/> */}
               <div>
-                <p className="">Check in</p>
+                <p className="">Stay Date</p>
                 <DatePicker
                   selected={startDate}
                   withPortal
-                  // showTimeSelect
-                  // dateFormat="Pp"
                   onChange={async (date) => await setStartDate(date)}
                 />
               </div>
             </div>
 
             <div className="border-2 text-center mt-3 md:mt-0 h-20 rounded-lg w-full">
-              <p className="mt-1">Short by Sit</p>
+              <p className="mt-1">Short by Sit count</p>
               <select
                 name="sit"
+                onChange={handleShortBySit}
                 className="select h-8 text-center w-full max-w-xs"
               >
-                <option disabled selected>
-                  No short
-                </option>
-                <option>Low to high</option>
-                <option>High to low</option>
+                <option value={''} disabled selected>No short</option>
+                <option value={'asc'}>Low to high</option>
+                <option value={'desc'}>High to low</option>
               </select>
             </div>
             <div className="border-2 h-20 mt-3 md:mt-0 rounded-lg w-full text-center">
               <p className="mt-1">Short by Price</p>
               <select
                 name="price"
+                onChange={handleShortByPrice}
                 className="select h-8 text-center w-full max-w-xs"
               >
-                <option disabled selected>
+                <option value={''} disabled selected>
                   No short
                 </option>
-                <option>Low to high</option>
-                <option>High to low</option>
+                <option value={'asc'}>Low to high</option>
+                <option value={'desc'}>High to low</option>
               </select>
             </div>
           </div>
-          <div>
-            <h3>Search for</h3>
-          </div>
           {/* search button */}
-          <div className=" w-full  h-20">
+          <div className=" w-full mt-8  h-20">
             <button className="btn px-20 mx-auto bg-[#fccd03] border-none  hover:bg-[#eac10b] text-primaryColor">
               searching
             </button>
