@@ -73,7 +73,7 @@ const Signup = () => {
     signUpWithEmail(email, password)
       .then((res) => {
         if (res.user) {
-          axios.post("http://localhost:5000/users", user).then((res) => {
+          axios.post("https://travel-zoo-server.vercel.app/users", user).then((res) => {
             if (res.data.insertedId) {
               toast.success("your sign up successful");
             }

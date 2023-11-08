@@ -46,14 +46,14 @@ const AuthProvider = ({ children }) => {
       const loggedUser = { email: userEmail };
       if (currentUser) {
         axios
-          .post("http://localhost:5000/jwt", loggedUser, {
+          .post("https://travel-zoo-server.vercel.app/jwt", loggedUser, {
             withCredentials: true,
           })
           .then(() => {
             // console.log(res.data)
           });
       } else {
-        axios.post("http://localhost:5000/logout", loggedUser, {withCredentials:true}).then(() => {
+        axios.post("https://travel-zoo-server.vercel.app/logout", loggedUser, {withCredentials:true}).then(() => {
           // console.log(res.data)
         });
       }

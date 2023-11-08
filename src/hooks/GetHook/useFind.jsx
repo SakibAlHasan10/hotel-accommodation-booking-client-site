@@ -4,7 +4,7 @@ import useAuth from "../CustomApi/useAuth";
 import { useNavigate } from "react-router-dom";
 
 const axiosFind = axios.create({
-  baseURL: `http://localhost:5000`,
+  baseURL: `https://travel-zoo-server.vercel.app`,
   withCredentials: true,
 });
 const useFind = () => {
