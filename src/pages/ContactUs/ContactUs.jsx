@@ -3,7 +3,6 @@ const ContactUs = () => {
     return (
         <div>
           <div className="px-24 pt-6">
-            <p className="text-lg text-slate-500 pl-4">OurSports/Contact</p>
             <h2 className="capitalize pb-20  text-5xl font-semibold text-left  pt-14">
               {" "}
               Contact
