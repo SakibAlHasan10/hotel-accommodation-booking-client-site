@@ -25,7 +25,7 @@ const Rooms = ({ room }) => {
       {/* <Link to={`/details/${_id}`}>
         </Link> */}
       <Link to={`/details/${_id}`}>
-        <div className=" absolute bottom-0 hover:bg-[#00000027] rounded-lg w-full h-full">
+        <div className=" absolute bottom-0 hover:bg-[#1817179f] rounded-lg w-full h-full">
           <div className="p-5 text-white pt-36">
             <h3 className="text-xl font-semibold">{title}</h3>
             <p>{location}</p>

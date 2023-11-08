@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import useFind from "../../hooks/GetHook/useFind";
 import useAuth from "../../hooks/CustomApi/useAuth";
 import toast from "react-hot-toast";
+import { FaRegSquareFull } from "react-icons/fa6";
+
 const DetailsPupUp = ({ bookingSum }) => {
   const { user } = useAuth();
   const axiosFind = useFind();
@@ -13,7 +15,7 @@ const DetailsPupUp = ({ bookingSum }) => {
     price,
     size,
   } = bookingSum;
-  // console.log(bookingSum)
+  // console.log(bookingSum);
   const bookInfo = { email: user?.email, bookingSum };
   // console.log(startDate,endDate)
   const handleBooking = () => {
@@ -24,9 +26,13 @@ const DetailsPupUp = ({ bookingSum }) => {
       // console.log(res.data);
     });
   };
+  if (!user) {
+    // navigate('/login')
+  }
   return (
     <div>
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
+
       <button
         disabled={!user}
         className={`btn mt-2 hover:shadow-lg shadow-primaryColor bg-primaryColor text-white w-full rounded-3xl
@@ -46,9 +52,13 @@ const DetailsPupUp = ({ bookingSum }) => {
           <h3 className="font-bold text-lg">{title}</h3>
           {/* <p className="py-4">{startDate}</p> */}
           {/* <p className="py-4">{endDate}</p> */}
-          <p>{size}</p>
-          <p>USD {price}</p>
-          <p>{description}</p>
+          <p className="text-xl font-semibold mt-3">USD {price}</p>
+          <p className="text-lg font-semibold mt-2">date</p>
+          <p className="flex items-center gap-2 mt-2">
+            <FaRegSquareFull className="" />
+            {size}
+          </p>
+          <p className="text-base font-normal mt-2">{description}</p>
           <button
             onClick={handleBooking}
             className="btn mt-8 hover:shadow-lg shadow-primaryColor bg-primaryColor text-white w-full rounded-3xl hover:bg-blue-700"

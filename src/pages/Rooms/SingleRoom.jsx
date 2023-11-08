@@ -1,9 +1,10 @@
 import { FaRegSquareFull } from "react-icons/fa6";
-import { MdGroup } from "react-icons/md";
+import { FaLocationDot } from "react-icons/fa6";
 import { AiFillStar } from "react-icons/ai";
-import { FaWifi, FaCarAlt, FaMoon } from "react-icons/fa";
+import { FaWifi, FaCarAlt, FaMoon, FaBed } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+
 const SingleRoom = ({ room }) => {
   // console.log(Object.keys(room).join(',') )
   const {
@@ -44,11 +45,14 @@ const SingleRoom = ({ room }) => {
             <FaRegSquareFull />
             {size}
           </p>
-          <p className="flex items-center gap-2 text-lg mt-2">{location}</p>
+          <p className="flex items-center gap-2 text-lg mt-2"><FaLocationDot/>{location}</p>
+          {
+            sit&& sit!==0?
           <p className="flex items-center gap-2 mt-2">
-            <MdGroup className="text-lg" />
+            <FaBed className="text-lg" />
             {sit + " " + "Sit"} {availability}
-          </p>
+          </p> : <p className="flex text-red-600 items-center gap-2 mt-2"> <FaBed className="text-lg" />Not Available</p>
+          }
           <p className="flex items-center gap-2 text-lg mt-2">
             <FaWifi />
             {Facilities[1]}

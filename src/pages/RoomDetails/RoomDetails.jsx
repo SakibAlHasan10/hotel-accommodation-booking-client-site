@@ -8,8 +8,11 @@ import useFind from "../../hooks/GetHook/useFind";
 import DetailsPupUp from "../../components/DetailsPopup/DetailsPupUp";
 import useAuth from "../../hooks/CustomApi/useAuth";
 import { FaWifi, FaCarAlt, FaBed } from "react-icons/fa";
+import moment from "moment/moment";
+let array = []
 const RoomDetails = () => {
   const axiosFind = useFind();
+  // const [sitAble, setSitSitAble] =useState()
   const [room, setRoom] = useState({});
   const { id } = useParams();
   const {
@@ -26,6 +29,7 @@ const RoomDetails = () => {
   }, [id, axiosFind]);
   const {
     _id,
+    booking,
     description,
     price,
     size,
@@ -39,14 +43,43 @@ const RoomDetails = () => {
     location,
     reviews,
   } = room;
+  // console.log(room);
+  // console.log(booking, findDate)
+  
+  // if(!booking){
+  //   console.log('kkkkkkkhhhh')
+  //     // setArr([...new Array, startDate])
+    
+  //   }
+
+
+  // sum offers
   const sum = price - price * (Offers / 100);
-  // console.log(sum);
-  const bookingPrice = (Offers>0)?sum : price
-  // console.log(bookingPrice)
+  const bookingPrice = (Offers>0)?sum : price;
+
+  // date formatting
+  const bookingDate = moment(startDate).format('MM/DD/YYYY')
+// const time = moment(booking[0]).isSame(bookingDate, "day")
+// const date1 = moment(booking[0]).format('MM/DD/YYYY')
+// console.log(time, bookingDate[0])
+
+// compare two date
+const findDate = booking?.find(book => moment(book).isSame(bookingDate, "day"))
+//  if(sit===0 && findDate){
+//   setSitSitAble(true)
+//  }else{
+//   setSitSitAble(false)
+//  }
+// console.log(findDate)
+
+
+
+  array = [bookingDate]
   const bookingSum = {
+    booking: array,
     id: _id,
     title: title,
-    startDate: startDate,
+    sit:sit,
     price: bookingPrice,
     size: size,
     description: description,
@@ -101,10 +134,13 @@ const RoomDetails = () => {
               </div>
             )}
             <p className="mt-2">for 1 Night</p>
+            {
+              sit&& sit!==0? 
             <p className="flex items-center gap-2 mt-2">
               <FaBed className="text-lg" />
               {sit + " " + "Bed"} {availability}
-            </p>
+            </p> : <p className="flex text-red-600 items-center gap-2 mt-2"> <FaBed className="text-lg" />Not Available</p>
+            }
             <p className="flex items-center gap-2 mt-2">
               <FaRegSquareFull className="" />
               {size}

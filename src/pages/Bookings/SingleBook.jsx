@@ -5,25 +5,13 @@ import { Link } from "react-router-dom";
 const SingleBook = ({ book }) => {
   const axiosFind = useFind();
   const {
-    // _id,
-    // RoomDescription,
-    // PricePerNight,
-    // RoomSize,
-    // Availability,
-    // RoomImages,
-    // SpecialOffers,
-    // Rating,
-    // Confirm,
-    // Title,
-    // Location,
-    // Reviews,
-    // bookDate,
-    // email,
-    id,
     _id,
+    id,
     title,
-    bookDate,
+    booking,
+    // email,
     price,
+    // size,
     img,
   } = book;
   const handleDeleteBooking = () => {
@@ -56,7 +44,7 @@ const SingleBook = ({ book }) => {
   //   console.log(reviewId)
   // }
   //   console.log(Object.keys(book).join(','))
-  // console.log(reviewId)
+  // console.log(Object.keys(book).join(","));
 
   return (
     <div className=" border  mb-5  p-4 gap-3 rounded-lg">
@@ -67,7 +55,7 @@ const SingleBook = ({ book }) => {
             <h2 className="text-2xl font-semibold">{title}</h2>
             <p>USD {price}</p>
             {/* <p>{size}</p> */}
-            <p>{bookDate.startDate}</p>
+            <p>{booking[0]}</p>
           </div>
         </div>
       </div>

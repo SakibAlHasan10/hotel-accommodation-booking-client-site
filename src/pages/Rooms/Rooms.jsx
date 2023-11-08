@@ -5,7 +5,7 @@ import useAuth from "../../hooks/CustomApi/useAuth";
 const Rooms = () => {
   const { loadRoom } = useAuth();
   return (
-    <div>
+    <div className="pb-20">
       <div className="bg-rooms-bg w-full pb-14 bg-cover bg-center bg-no-repeat">
         <Searching></Searching>
       </div>
