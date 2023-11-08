@@ -15,10 +15,12 @@ import useAuth from "../../hooks/CustomApi/useAuth";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { signInWIthEmail } = useAuth();
   const [errorText, setErrorText] = useState("");
+  const navigate =useNavigate()
 
   function Copyright(props) {
     return (
@@ -55,6 +57,7 @@ const Login = () => {
       .then((res) => {
         if (res.user) {
           toast.success("your sign in successful");
+          navigate('/')
         }
         // console.log(res.user);
       })

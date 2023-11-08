@@ -29,7 +29,7 @@ const DetailsPupUp = ({ bookingSum }) => {
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
       <button
         disabled={!user}
-        className={`btn mt-8 hover:shadow-lg shadow-primaryColor bg-primaryColor text-white w-full rounded-3xl
+        className={`btn mt-2 hover:shadow-lg shadow-primaryColor bg-primaryColor text-white w-full rounded-3xl
         hover:bg-blue-700`}
         onClick={() => document.getElementById("my_modal_3").showModal()}
       >

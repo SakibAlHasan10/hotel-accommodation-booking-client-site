@@ -5,7 +5,7 @@ import useAuth from "../../hooks/CustomApi/useAuth";
 // import { SiGooglecalendar } from 'react-icons/si';
 
 const Searching = () => {
-  const { startDate, setStartDate, endDate, setEndDate } = useAuth();
+  const { startDate, setStartDate } = useAuth();
   // console.log(startDate, endDate);
 
   return (
@@ -38,22 +38,31 @@ const Searching = () => {
               </div>
             </div>
 
-            <div className="border-2 text-left flex items-center justify-center mt-3 md:mt-0 h-20 rounded-lg w-full">
-              <div>
-
-              <p>Check out</p>
-              <DatePicker
-              withPortal
-                selected={endDate}
-                onChange={async (date) => await setEndDate(date)}
-              />
-              </div>
+            <div className="border-2 text-center mt-3 md:mt-0 h-20 rounded-lg w-full">
+              <p className="mt-1">Short by Sit</p>
+              <select
+                name="sit"
+                className="select h-8 text-center w-full max-w-xs"
+              >
+                <option disabled selected>
+                  No short
+                </option>
+                <option>Low to high</option>
+                <option>High to low</option>
+              </select>
             </div>
             <div className="border-2 h-20 mt-3 md:mt-0 rounded-lg w-full text-center">
-              <DatePicker
-                selected={startDate}
-                onChange={async (date) => await setStartDate(date)}
-              />
+              <p className="mt-1">Short by Price</p>
+              <select
+                name="price"
+                className="select h-8 text-center w-full max-w-xs"
+              >
+                <option disabled selected>
+                  No short
+                </option>
+                <option>Low to high</option>
+                <option>High to low</option>
+              </select>
             </div>
           </div>
           <div>

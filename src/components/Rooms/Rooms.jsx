@@ -1,33 +1,37 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 const Rooms = ({ room }) => {
-  // console.log(Object.keys(room).join(','))
+  // console.log(Object.keys(room).join(","));
   const {
     _id,
-    RoomDescription,
-    PricePerNight,
-    RoomSize,
-    Availability,
-    RoomImages,
-    roomImages,
-    SpecialOffers,
-    Rating,
-    Confirm,
-    Title,
-    Location,
-    Reviews,
+    // description,
+    // price,
+    // size,
+    // availability,
+    images,
+    // Offers,
+    // rating,
+    // sit,
+    // Facilities,
+    // booking,
+    // confirm,
+    title,
+    location,
+    // reviews,
   } = room;
   return (
-    <div>
-        <Link to={`/details/${_id}`}>
-        <img src={RoomImages} alt="" className="w-full"/>
-        <h3>{Title}</h3>
-        </Link>
-        <Link to={`/details/${_id}`}>
-        <img src={roomImages} alt="" className="w-full"/>
-        </Link>
-
-
+    <div className="relative">
+      <img src={images} alt="" className="w-full rounded-lg" />
+      {/* <Link to={`/details/${_id}`}>
+        </Link> */}
+      <Link to={`/details/${_id}`}>
+        <div className=" absolute bottom-0 hover:bg-[#00000027] rounded-lg w-full h-full">
+          <div className="p-5 text-white pt-36">
+            <h3 className="text-xl font-semibold">{title}</h3>
+            <p>{location}</p>
+          </div>
+        </div>
+      </Link>
     </div>
   );
 };

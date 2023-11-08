@@ -68,7 +68,6 @@ const SingleBook = ({ book }) => {
             <p>USD {price}</p>
             {/* <p>{size}</p> */}
             <p>{bookDate.startDate}</p>
-            <p>{bookDate.endDate}</p>
           </div>
         </div>
       </div>

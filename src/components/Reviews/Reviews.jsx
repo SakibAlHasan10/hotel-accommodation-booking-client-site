@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const Reviews = () => {
   const [roomReviewId, setRoomReviewId] = useState({});
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { id } = useParams();
   const axiosFind = useFind();
   useEffect(() => {
@@ -31,7 +31,7 @@ const Reviews = () => {
     axiosFind.post("/reviews", review).then((res) => {
       if (res.data.insertedId) {
         toast.success("Thanks for your review");
-        navigate(-1)
+        navigate(-1);
       }
       console.log(res.data);
     });

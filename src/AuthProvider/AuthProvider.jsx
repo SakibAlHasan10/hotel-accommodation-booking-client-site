@@ -16,7 +16,6 @@ const AuthProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
 
   // sign in with google
   const googleProvider = new GoogleAuthProvider();
@@ -79,8 +78,6 @@ const AuthProvider = ({ children }) => {
     logout,
     startDate,
     setStartDate,
-    endDate,
-    setEndDate,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
