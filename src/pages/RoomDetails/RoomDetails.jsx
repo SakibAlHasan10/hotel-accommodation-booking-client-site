@@ -68,7 +68,9 @@ const RoomDetails = () => {
   const bookingPrice = Offers > 0 ? sum : price;
 
   // date formatting
-  const bookingDate = moment(startDate).format("MM/DD/YYYY");
+  const bookingDate = moment(startDate).format("DD-MM-YYYY");
+
+  // const bookingDate = moment(startDate).format("MM/DD/YYYY");
   // const time = moment(booking[0]).isSame(bookingDate, "day")
   // const date1 = moment(booking[0]).format('MM/DD/YYYY')
   // console.log(time, bookingDate[0])

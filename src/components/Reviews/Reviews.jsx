@@ -33,7 +33,7 @@ const Reviews = () => {
         toast.success("Thanks for your review");
         navigate(-1);
       }
-      console.log(res.data);
+      // console.log(res.data);
     });
   };
   return (

@@ -30,8 +30,9 @@ const DetailsPupUp = ({ bookingSum }) => {
   // if (!user) {
     // navigate('/login')
   // }
-  const bookingDate = moment(startDate).format("MM/DD/YYYY");
-
+  const bookingDate = moment(startDate).format("DD/MM/YYYY");
+  // const bookingDate1 = moment(startDate).format("DD-MM-YYYY");
+  // console.log(bookingDate, bookingDate1)
   return (
     <div>
       {/* You can open the modal using document.getElementById('ID').showModal() method */}

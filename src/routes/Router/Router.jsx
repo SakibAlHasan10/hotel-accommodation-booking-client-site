@@ -12,6 +12,7 @@ import RoomDetails from "../../pages/RoomDetails/RoomDetails";
 import PrivateRouter from "../PrivateRouter/PrivateRouter";
 import DetailsPupUp from "../../components/DetailsPopup/DetailsPupUp";
 import Reviews from "../../components/Reviews/Reviews";
+import DateChangePopUp from "../../components/DateChangePopUp/DateChangePopUp";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,7 +31,8 @@ const router = createBrowserRouter([
           {
             path:'review/:id',
             element:<Reviews></Reviews>
-          }
+          },
+          
         ]
       },
       {
@@ -60,7 +62,11 @@ const router = createBrowserRouter([
       {
         path:"/popup",
         element:<DetailsPupUp/>
-      }
+      },
+      {
+        path:'/update/:id',
+        element:<DateChangePopUp/>
+      },
     ],
   },
 ]);

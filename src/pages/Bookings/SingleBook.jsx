@@ -2,7 +2,8 @@ import useFind from "../../hooks/GetHook/useFind";
 import PropTypes from "prop-types";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
-const SingleBook = ({ book }) => {
+import moment from "moment";
+const SingleBook = ({ book, isRefetching }) => {
   const axiosFind = useFind();
   const {
     _id,
@@ -14,6 +15,23 @@ const SingleBook = ({ book }) => {
     // size,
     img,
   } = book;
+
+  const array = { ...booking };
+  const toObj = array[0];
+
+  //   console.log(booking, arrayToObj[0])
+  const currentDate = moment().date(Number);
+  const currentDate2 = currentDate._d;
+
+  const bookingDate = moment(currentDate2).format("DD/MM/YYYY");
+  // console.log(bookingDate);
+  let admission = moment(`${toObj}`, "DD/MM/YYYY");
+  let discharge = moment(`${bookingDate}`, "DD/MM/YYYY");
+  const deferenceDate = admission.diff(discharge, "days");
+
+  // console.log(deferenceDate);
+  // console.log(admission,discharge);
+
   const handleDeleteBooking = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -34,6 +52,7 @@ const SingleBook = ({ book }) => {
             });
           }
         });
+        isRefetching();
       }
     });
   };
@@ -46,6 +65,10 @@ const SingleBook = ({ book }) => {
   //   console.log(Object.keys(book).join(','))
   // console.log(Object.keys(book).join(","));
 
+  // axiosFind.delete(`/remove/${_id}`).then((res) => {
+  //   console.log(res.data)
+  // })
+  // const hhh = getDateDiff('{date2}','{date1}','y')
   return (
     <div className=" border  mb-5  p-4 gap-3 rounded-lg">
       <div className="flex">
@@ -60,10 +83,13 @@ const SingleBook = ({ book }) => {
         </div>
       </div>
       <div className="flex w-full md:w-6/12 lg:w-10/12 mx-auto mt-4 gap-2 md:gap-3">
-        <button className="btn btn-outline border-2 hover:border-white border-primaryColor hover:bg-primaryColor">
-          change date
-        </button>
+        <Link to={`/update/${_id}`}>
+          <button className="btn btn-outline border-2 hover:border-white border-primaryColor hover:bg-primaryColor">
+            change date
+          </button>
+        </Link>
         <button
+          disabled={deferenceDate <= 1}
           onClick={handleDeleteBooking}
           className={`btn bg-primaryColor hover:bg-blue-600
              text-white`}
@@ -86,5 +112,6 @@ const SingleBook = ({ book }) => {
 };
 SingleBook.propTypes = {
   book: PropTypes.object,
+  isRefetching: PropTypes.func,
 };
 export default SingleBook;
