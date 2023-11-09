@@ -17,7 +17,7 @@ import useAuth from "../../hooks/CustomApi/useAuth";
 import toast from "react-hot-toast";
 // import { useScrollTrigger } from "@mui/material";
 
-const pages = ["Rooms", "My Bookings", "About Us", "Contact Us"];
+const pages = ["Rooms", "My Bookings", "Gallery", "Contact Us"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Navbar() {
@@ -47,6 +47,7 @@ function Navbar() {
   return (
     <AppBar
       position="fixed"
+      
       sx={{ bgcolor: "#ffffff08", boxShadow: "none", color: "#0a5299" }}
     >
       <Container maxWidth="lg">
@@ -56,6 +57,7 @@ function Navbar() {
             noWrap
             component="a"
             href="/"
+            fontSize={{sx:'20px'}}
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -128,6 +130,7 @@ function Navbar() {
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
+              fontSize:{xs:"24px"},
               fontFamily: "monospace",
               fontWeight: 700,
               textDecoration: "none",

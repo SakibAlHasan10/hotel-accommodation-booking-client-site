@@ -5,6 +5,7 @@ import useAuth from "../../hooks/CustomApi/useAuth";
 import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 const DateChangePopUp = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -27,6 +28,9 @@ const DateChangePopUp = () => {
   // console.log(id, bookRoom)
   return (
     <div className="pt-32 mb-24 max-w-screen-lg mx-auto px-6">
+        <Helmet>
+        <title>Update Date || Booking</title>
+      </Helmet>
       <h2 className="text-3xl font-semibold mb-10">Update Your Booking Date</h2>
       <div className="border-2 text-left justify-center p-6 flex items-center gap-3 rounded-lg w-full ">
         <div className="w-full mx-auto ">
