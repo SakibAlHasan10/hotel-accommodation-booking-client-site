@@ -15,10 +15,11 @@ const RoomDetails = () => {
   const axiosFind = useFind();
   // const [sitAble, setSitSitAble] =useState()
   const [room, setRoom] = useState({});
-  const [review, setReview] = useState([]);
   const { id } = useParams();
   const {
     startDate,
+    reviewCount,
+    setReviewCount,
     // setStartDate,
     // setEndDate
   } = useAuth();
@@ -32,9 +33,9 @@ const RoomDetails = () => {
 
   useEffect(() => {
     axiosFind.get(`/reviews/${id}`).then((res) => {
-      setReview(res.data);
+      setReviewCount(res.data);
     });
-  }, [id, axiosFind]);
+  }, [id, axiosFind, setReviewCount]);
 
   const {
     _id,
@@ -50,7 +51,7 @@ const RoomDetails = () => {
     Facilities,
     title,
     location,
-    reviews,
+    // reviews,
   } = room;
   // console.log(booking);
   // console.log(booking, findDate)
@@ -118,7 +119,7 @@ const RoomDetails = () => {
               {rating > 4.5
                 ? rating + " " + "Exceptional"
                 : `${rating + " " + "Superb"}`}
-              <span className="ml-2">({reviews} Reviews)</span>
+              <span className="ml-2">({reviewCount.length} Reviews)</span>
             </p>
             <p className="text-2xl mt-3 font-semibold text-teal-500">
               {Facilities && Facilities[0]}
@@ -187,14 +188,15 @@ const RoomDetails = () => {
       <div className="max-w-6xl mx-auto p-5 bg-base-100 rounded-xl mt-8">
         <h2 className="text-2xl mb-3 font-semibold">Room review</h2>
         <div className="grid mt-6 grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-4">
-
-        {review.length > 0 ? (
-          review?.slice(0, 4).map((sl) => <Review key={sl._id}>{sl}</Review>)
-        ) : (
-          <p className="text-center text-lg font-normal my-10">
-            Review Not Available
-          </p>
-        )}
+          {reviewCount.length > 0 ? (
+            reviewCount
+              ?.slice(0, 4)
+              .map((sl) => <Review key={sl._id}>{sl}</Review>)
+          ) : (
+            <p className="text-center text-lg font-normal my-10">
+              Review Not Available
+            </p>
+          )}
         </div>
       </div>
     </div>

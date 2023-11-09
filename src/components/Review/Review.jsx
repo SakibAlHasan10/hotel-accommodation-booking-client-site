@@ -4,6 +4,7 @@ import "aos/dist/aos.css";
 import { useEffect } from "react";
 const Review = ({ children }) => {
   // console.log(Object.keys(children).join(','))
+  
   const {
     // _id, id,
     name,

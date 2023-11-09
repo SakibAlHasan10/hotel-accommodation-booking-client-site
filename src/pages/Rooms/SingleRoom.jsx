@@ -4,15 +4,18 @@ import { AiFillStar } from "react-icons/ai";
 import { FaWifi, FaCarAlt, FaMoon, FaBed } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { useEffect } from "react";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import useFind from "../../hooks/GetHook/useFind";
 const SingleRoom = ({ room }) => {
+  const [reviewCount, setReviewCount] = useState([]);
+  const axiosFind = useFind();
+
   // console.log(Object.keys(room).join(',') )
   useEffect(() => {
-    AOS.init({
-    });
-  }, [])
+    AOS.init({});
+  }, []);
   const {
     _id,
     // description,
@@ -28,22 +31,30 @@ const SingleRoom = ({ room }) => {
     // confirm,
     title,
     location,
-    reviews,
+    // reviews,
   } = room;
+  useEffect(() => {
+    axiosFind.get(`/reviews/${_id}`).then((res) => {
+      setReviewCount(res.data);
+    });
+  }, [_id, axiosFind, setReviewCount]);
   // console.log(Facilities);
   const sum = price - price * (Offers / 100);
   return (
     <div>
       <div className="border rounded-2xl">
         <Link to={`/details/${_id}`}>
-          <img src={images} alt="" className="w-full rounded-t-2xl" 
-          data-aos="zoom-in"
-          data-aos-offset="200"
-          data-aos-delay="10"
-          data-aos-duration="1500"
-          data-aos-easing="ease-in-out"
-          data-aos-mirror="true"
-          data-aos-once="false"
+          <img
+            src={images}
+            alt=""
+            className="w-full rounded-t-2xl"
+            data-aos="zoom-in"
+            data-aos-offset="200"
+            data-aos-delay="10"
+            data-aos-duration="1500"
+            data-aos-easing="ease-in-out"
+            data-aos-mirror="true"
+            data-aos-once="false"
           />
         </Link>
         <div className="p-4">
@@ -53,20 +64,28 @@ const SingleRoom = ({ room }) => {
             {rating > 4.5
               ? rating + " " + "Exceptional"
               : `${rating + " " + "Superb"}`}
-            <span className="ml-2">({reviews} Reviews)</span>
+            <span className="ml-2">({reviewCount.length} Reviews)</span>
           </p>
           <p className="flex items-center gap-2 text-lg mt-2">
             <FaRegSquareFull />
             {size}
           </p>
-          <p className="flex items-center gap-2 text-lg mt-2"><FaLocationDot/>{location}</p>
-          {
-            sit&& sit!==0?
-          <p className="flex items-center gap-2 mt-2">
-            <FaBed className="text-lg" />
-            {sit + " " + "Sit"} {availability}
-          </p> : <p className="flex text-red-600 items-center gap-2 mt-2"> <FaBed className="text-lg" />Not Available</p>
-          }
+          <p className="flex items-center gap-2 text-lg mt-2">
+            <FaLocationDot />
+            {location}
+          </p>
+          {sit && sit !== 0 ? (
+            <p className="flex items-center gap-2 mt-2">
+              <FaBed className="text-lg" />
+              {sit + " " + "Sit"} {availability}
+            </p>
+          ) : (
+            <p className="flex text-red-600 items-center gap-2 mt-2">
+              {" "}
+              <FaBed className="text-lg" />
+              Not Available
+            </p>
+          )}
           <p className="flex items-center gap-2 text-lg mt-2">
             <FaWifi />
             {Facilities[1]}
@@ -89,20 +108,19 @@ const SingleRoom = ({ room }) => {
                     {Offers + "% off"}
                   </p>
                   <div className="flex items-center gap-5">
-
-                  <p className="text-xl line-through mt-2 font-bold">
-                    USD {price}
-                  </p>
-                  <p className="text-2xl mt-2 font-bold text-primaryColor">
-                    USD {sum}
-                  </p>
+                    <p className="text-xl line-through mt-2 font-bold">
+                      USD {price}
+                    </p>
+                    <p className="text-2xl mt-2 font-bold text-primaryColor">
+                      USD {sum}
+                    </p>
                   </div>
                 </div>
               ) : (
                 <div className="mb-6">
                   <p className="mt-2 bg-orange-500 text-lg w-28 text-center rounded-3xl py-1 text-white">
-                  {"off not show"}
-                </p>
+                    {"off not show"}
+                  </p>
                   <p className="text-2xl mt-2 font-bold">USD {price}</p>
                 </div>
               )}
