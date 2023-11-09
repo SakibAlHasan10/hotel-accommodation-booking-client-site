@@ -113,7 +113,7 @@ const RoomDetails = () => {
           </div>
           <div>
             {/* <h2 className="text-2xl mt-3 font-semibold">{title}</h2> */}
-            <p className=" flex items-center border p-2 md:w-1/3 lg:w-full rounded-md mt-5">
+            <p className=" flex items-center border p-2 md:w-1/2 lg:w-full rounded-md mt-5">
               <AiFillStar className="text-orange-500  mr-1 text-lg" />
               {rating > 4.5
                 ? rating + " " + "Exceptional"

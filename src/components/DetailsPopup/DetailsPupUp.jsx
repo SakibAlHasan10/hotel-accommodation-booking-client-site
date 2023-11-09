@@ -21,10 +21,10 @@ const DetailsPupUp = ({ bookingSum }) => {
   // console.log(startDate,endDate)
   const handleBooking = () => {
     axiosFind.patch("/bookings", bookInfo).then((res) => {
-      if (res.data.modifiedCount > 0) {
+      if (res.data.roomBook.modifiedCount> 0) {
         toast.success("your booking successful");
       }
-      // console.log(res.data);
+      console.log(res.data);
     });
   };
   // if (!user) {
@@ -38,7 +38,7 @@ const DetailsPupUp = ({ bookingSum }) => {
 
       <button
         disabled={!user}
-        className={`btn mt-10 lg:mt-16 hover:shadow-lg shadow-primaryColor bg-primaryColor text-white w-full rounded-3xl
+        className={`btn mt-10 lg:mt-10 hover:shadow-lg shadow-primaryColor bg-primaryColor text-white w-full rounded-3xl
         hover:bg-blue-700`}
         onClick={() => document.getElementById("my_modal_3").showModal()}
       >

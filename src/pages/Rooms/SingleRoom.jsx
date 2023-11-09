@@ -4,9 +4,15 @@ import { AiFillStar } from "react-icons/ai";
 import { FaWifi, FaCarAlt, FaMoon, FaBed } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-
+import { useEffect } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const SingleRoom = ({ room }) => {
   // console.log(Object.keys(room).join(',') )
+  useEffect(() => {
+    AOS.init({
+    });
+  }, [])
   const {
     _id,
     // description,
@@ -30,7 +36,15 @@ const SingleRoom = ({ room }) => {
     <div>
       <div className="border rounded-2xl">
         <Link to={`/details/${_id}`}>
-          <img src={images} alt="" className="w-full rounded-t-2xl" />
+          <img src={images} alt="" className="w-full rounded-t-2xl" 
+          data-aos="zoom-in"
+          data-aos-offset="200"
+          data-aos-delay="10"
+          data-aos-duration="1500"
+          data-aos-easing="ease-in-out"
+          data-aos-mirror="true"
+          data-aos-once="false"
+          />
         </Link>
         <div className="p-4">
           <h2 className="text-xl font-semibold">{title}</h2>

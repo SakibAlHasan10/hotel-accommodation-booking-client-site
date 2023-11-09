@@ -16,10 +16,12 @@ import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const { signUpWithEmail } = useAuth();
   const [errorText, setErrorText] = useState("");
+  const navigate = useNavigate()
   function Copyright(props) {
     return (
       <Typography
@@ -76,6 +78,7 @@ const Signup = () => {
           axios.post("https://travel-zoo-server.vercel.app/users", user).then((res) => {
             if (res.data.insertedId) {
               toast.success("your sign up successful");
+              navigate('/')
             }
           });
           console.log(res.user);

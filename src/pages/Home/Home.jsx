@@ -34,7 +34,7 @@ const Home = () => {
       <div className="pb-14">
         <div className="max-w-screen-lg mx-auto p-5 bg-base-100 rounded-xl mt-8">
           <h2 className="text-2xl mb-3 font-semibold">Room review</h2>
-          <div className="grid mt-6 grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-4">
+          <div className="grid mt-6 grid-cols-1 gap-5 md:grid-cols-4">
             {review.length > 0 ? (
               review
                 ?.slice(0, 4)
