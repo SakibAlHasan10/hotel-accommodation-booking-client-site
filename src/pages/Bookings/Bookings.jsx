@@ -4,6 +4,7 @@ import useFind from "../../hooks/GetHook/useFind";
 import { useQuery } from "@tanstack/react-query";
 import SingleBook from "./SingleBook";
 import { Outlet } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const Bookings = () => {
   const { user } = useAuth();
@@ -22,6 +23,9 @@ const Bookings = () => {
 
   return (
     <div className=" max-w-screen-lg mx-auto pt-28 px-6">
+      <Helmet>
+      <title>My Booking || Booking</title>
+      </Helmet>
       <h2 className="text-3xl font-semibold mb-8">My Bookings</h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 ">
         <Outlet />

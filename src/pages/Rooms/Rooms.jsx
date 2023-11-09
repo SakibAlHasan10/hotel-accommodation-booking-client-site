@@ -1,11 +1,15 @@
 import SingleRoom from "./SingleRoom";
 import Searching from "../../components/Searching/Searching";
 import useAuth from "../../hooks/CustomApi/useAuth";
+import { Helmet } from "react-helmet";
 
 const Rooms = () => {
   const { loadRoom } = useAuth();
   return (
     <div className="pb-20">
+      <Helmet>
+      <title>Rooms || Booking</title>
+      </Helmet>
       <div className="bg-rooms-bg w-full pb-14 bg-cover bg-center bg-no-repeat">
         <Searching></Searching>
       </div>

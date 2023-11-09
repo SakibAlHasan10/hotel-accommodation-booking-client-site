@@ -7,6 +7,7 @@ import useAuth from "../../hooks/CustomApi/useAuth";
 import Review from "../../components/Review/Review";
 import { useEffect, useState } from "react";
 import useFind from "../../hooks/GetHook/useFind";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   const [review, setReview] = useState([]);
@@ -19,6 +20,9 @@ const Home = () => {
   const { loadRoom } = useAuth();
   return (
     <div className="bg-base-300">
+      <Helmet>
+      <title>Home || Booking</title>
+      </Helmet>
       <Banner></Banner>
       <div className="max-w-screen-lg mt-14 mx-auto px-8 ">
         <h2 className="text-3xl font-bold mb-6">Our Rooms</h2>

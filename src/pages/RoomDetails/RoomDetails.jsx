@@ -10,6 +10,7 @@ import useAuth from "../../hooks/CustomApi/useAuth";
 import { FaWifi, FaCarAlt, FaBed } from "react-icons/fa";
 import moment from "moment/moment";
 import Review from "../../components/Review/Review";
+import { Helmet } from "react-helmet";
 let array = [];
 const RoomDetails = () => {
   const axiosFind = useFind();
@@ -96,6 +97,9 @@ const RoomDetails = () => {
 
   return (
     <div className="mt-16 py-10 bg-base-300 px-8 ">
+      <Helmet>
+      <title>Room Details || Booking</title>
+      </Helmet>
       <div className=" lg:flex max-w-6xl mx-auto p-5 bg-base-100 rounded-xl">
         <div className=" md:w-4/5 lg:w-3/5 ">
           <img src={images} alt="" className="w-full h-full rounded-lg" />
