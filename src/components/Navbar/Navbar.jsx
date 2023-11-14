@@ -47,8 +47,7 @@ function Navbar() {
   return (
     <AppBar
       position="fixed"
-      
-      sx={{ bgcolor: "#ffffff08", boxShadow: "none", color: "#0a5299" }}
+      sx={{ bgcolor: "#ffffff23", boxShadow: "none", color: "#0a5299" }}
     >
       <Container maxWidth="lg">
         <Toolbar disableGutters>

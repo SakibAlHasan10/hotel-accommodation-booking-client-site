@@ -151,7 +151,7 @@ const RoomDetails = () => {
               </div>
             )}
             <p className="mt-2">for 1 Night</p>
-            {sit && sit !== 0 ? (
+            {sit && sit >= 0 ? (
               <p className="flex items-center gap-2 mt-2">
                 <FaBed className="text-lg" />
                 {sit + " " + "Bed"} {availability}

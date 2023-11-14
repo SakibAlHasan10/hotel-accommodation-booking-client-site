@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import moment from "moment";
-const SingleBook = ({ book, isRefetching }) => {
+const SingleBook = ({ book, refetch }) => {
   const axiosFind = useFind();
   const {
     _id,
@@ -51,8 +51,8 @@ const SingleBook = ({ book, isRefetching }) => {
               icon: "success",
             });
           }
+          refetch();
         });
-        isRefetching();
       }
     });
   };
@@ -112,6 +112,6 @@ const SingleBook = ({ book, isRefetching }) => {
 };
 SingleBook.propTypes = {
   book: PropTypes.object,
-  isRefetching: PropTypes.func,
+  refetch: PropTypes.func,
 };
 export default SingleBook;

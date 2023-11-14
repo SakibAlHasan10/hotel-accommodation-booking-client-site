@@ -3,7 +3,7 @@ const Gallery = ({ room }) => {
   const { images } = room;
   console.log(images);
   return (
-    <div className="">
+    <div >
       <img src={images} alt="" className=" rounded-lg" />
     </div>
   );

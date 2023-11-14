@@ -74,7 +74,7 @@ const SingleRoom = ({ room }) => {
             <FaLocationDot />
             {location}
           </p>
-          {sit && sit !== 0 ? (
+          {sit && sit >= 0 ? (
             <p className="flex items-center gap-2 mt-2">
               <FaBed className="text-lg" />
               {sit + " " + "Sit"} {availability}

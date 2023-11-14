@@ -27,8 +27,8 @@
       "Facilities":["Refundable","wi-fi", "Free self parking", "Collect and Redeem"],
       "booking":[],
       "confirm": "Pending",
-      "title": "Oceanfront Romance Suite",
-      "location": "Miami Beach",
+      "title": "Garden View Double Room",
+      "location": "Portland",
       "reviews": 3
     },
     {
@@ -43,8 +43,8 @@
       "Facilities":["Refundable","wi-fi", "Free self parking", "Collect and Redeem"],
       "booking":[],
       "confirm": "Pending",
-      "title": "Oceanfront Romance Suite",
-      "location": "Miami Beach",
+      "title": "City Skyline Penthouse",
+      "location": "New York City",
       "reviews": 7
     },
     {
@@ -59,8 +59,8 @@
       "Facilities":["Refundable","wi-fi", "Free self parking", "Collect and Redeem"],
       "booking":[],
       "confirm": "Pending",
-      "title": "Oceanfront Romance Suite",
-      "location": "Miami Beach",
+      "title": "Woodland Cabin Retreat",
+      "location": "Asheville",
       "reviews": 2
     },
     {
@@ -75,8 +75,8 @@
       "Facilities":["Refundable","wi-fi", "Free self parking", "Collect and Redeem"],
       "booking":[],
       "confirm": "Pending",
-      "title": "Oceanfront Romance Suite",
-      "location": "Miami Beach",
+      "title": "City View Studio",
+      "location": "Los Angeles",
       "reviews": 0
     },
     {
@@ -91,8 +91,8 @@
       "Facilities":["Refundable","wi-fi", "Free self parking", "Collect and Redeem"],
       "booking":[],
       "confirm": "Pending",
-      "title": "Oceanfront Romance Suite",
-      "location": "Miami Beach",
+      "title": "Luxury Beachfront Villa",
+      "location": "Malibu",
       "reviews": 2
     },
     {
@@ -107,8 +107,8 @@
       "Facilities":["Refundable","wi-fi", "Free self parking", "Collect and Redeem"],
       "booking":[],
       "confirm": "Pending",
-      "title": "Oceanfront Romance Suite",
-      "location": "Miami Beach",
+      "title": "Mountain Chalet Getaway",
+      "location": "Aspen",
       "reviews": 3
     },
     {
@@ -123,8 +123,8 @@
       "Facilities":["Refundable","wi-fi", "Free self parking", "Collect and Redeem"],
       "booking":[],
       "confirm": "Pending",
-      "title": "Oceanfront Romance Suite",
-      "location": "Miami Beach",
+      "title": "Downtown Urban Loft",
+      "location": "Chicago",
       "reviews": 5
     },
     {
@@ -139,8 +139,8 @@
       "Facilities":["Refundable","wi-fi", "Free self parking", "Collect and Redeem"],
       "booking":[],
       "confirm": "Pending",
-      "title": "Oceanfront Romance Suite",
-      "location": "Miami Beach",
+      "title": "Garden Cottage Hideaway",
+      "location": "Charleston",
       "reviews": 2
     },
     {
@@ -155,8 +155,8 @@
       "Facilities":["Refundable","wi-fi", "Free self parking", "Collect and Redeem"],
       "booking":[],
       "confirm": "Pending",
-      "title": "Oceanfront Romance Suite",
-      "location": "Miami Beach",
+      "title": "Riverside Luxury Suite",
+      "location": "Paris",
       "reviews": 5
     },
     {
@@ -171,8 +171,8 @@
       "Facilities":["Refundable","wi-fi", "Free self parking", "Collect and Redeem"],
       "booking":[],
       "confirm": "Pending",
-      "title": "Oceanfront Romance Suite",
-      "location": "Miami Beach",
+      "title": "Japanese Hot Spring Retreat",
+      "location": "Kyoto",
       "reviews": 3
     },
     {
@@ -187,8 +187,8 @@
       "Facilities":["Refundable","wi-fi", "Free self parking", "Collect and Redeem"],
       "booking":[],
       "confirm": "Pending",
-      "title": "Oceanfront Romance Suite",
-      "location": "Miami Beach",
+      "title": "Treehouse Nature Escape",
+      "location": "Seattle",
       "reviews": 2
     }
     

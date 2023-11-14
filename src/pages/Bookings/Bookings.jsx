@@ -11,7 +11,7 @@ const Bookings = () => {
   const axiosFind = useFind();
   const [allBook, setAllBook] = useState([]);
   const email = user?.email;
-  const { isPending, error, data } = useQuery({
+  const { isPending, error, data, refetch } = useQuery({
     queryKey: ["allBookRoom"],
     queryFn: () =>
       axiosFind.get(`/books/${email}`).then((res) => {
@@ -31,6 +31,7 @@ const Bookings = () => {
           allBook?.map((book) => (
             <SingleBook
               key={book._id}
+              refetch={refetch}
               book={book}
             ></SingleBook>
           ))}
